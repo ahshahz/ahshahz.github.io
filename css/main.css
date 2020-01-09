@@ -15,8 +15,12 @@ nav ul li, footer ul li {
     margin-right: 20px;
 }
 a {
+	display: block;
+	color: white;
+	text-align: center;
+	padding: 14px 16px;
     text-decoration: none;
-    color: #999;
+ 
 }
 a:hover {
     text-decoration: underline;

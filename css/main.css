@@ -9,10 +9,7 @@ nav ul, footer ul {
     font-weight: bold;
 }
 nav ul li, footer ul li {
-    display: block;
-    color: white;
-    text-align: center;
-    padding: 14px 16px;
+    display: inline;
     margin-right: 20px;
 }
 a {

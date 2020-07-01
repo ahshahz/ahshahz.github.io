@@ -294,28 +294,36 @@ var TxtRotate = function(el, toRotate, period) {
   this.el = el;
   this.loopNum = 0;
   this.period = parseInt(period, 10) || 2000;
-  this.txt = '';
+  this.txt = ''; //keeps track of each individual char 
   this.tick();
   this.isDeleting = false;
 };
 
 TxtRotate.prototype.tick = function() {
-  var i = this.loopNum % this.toRotate.length;
-  var fullTxt = this.toRotate[i];
+ // var i = this.loopNum % this.toRotate.length; //gets what to print next ?
 
-  if (this.isDeleting) {
-    this.txt = fullTxt.substring(0, this.txt.length - 1);
-  } else {
-    this.txt = fullTxt.substring(0, this.txt.length + 1);
+ var fullTxt = " ";//holds whole text of content  
+
+ for(var i = 0; i < this.toRotate.length; i++){
+    fullTxt += "<br \>" + this.toRotate[i];
+  }
+ 
+  if (this.isDeleting) { //erases
+ this.txt = fullTxt.substring(0, this.txt.length - 4);
+   
+} else {
+	this.txt = fullTxt.substring(0, this.txt.length + 10);
+
   }
 
-  this.el.innerHTML = '<span class="wrap">'+this.txt+'</span>';
+  //prints elements
+  this.el.innerHTML = '<span class="wrap">'+this.txt +'</span>';
 
-  var that = this;
+  var that = this; //an object 
   var delta = 300 - Math.random() * 100;
 
   if (this.isDeleting) { delta /= 2; }
-
+  
   if (!this.isDeleting && this.txt === fullTxt) {
     delta = this.period;
     this.isDeleting = true;
@@ -326,7 +334,7 @@ TxtRotate.prototype.tick = function() {
   }
 
   setTimeout(function() {
-    that.tick();
+    that.tick(); //controls letter apperance 
   }, delta);
 };
 
@@ -335,7 +343,8 @@ window.onload = function() {
   for (var i=0; i<elements.length; i++) {
     var toRotate = elements[i].getAttribute('data-rotate');
     var period = elements[i].getAttribute('data-period');
-    if (toRotate) {
+
+	if (toRotate) {
       new TxtRotate(elements[i], JSON.parse(toRotate), period);
     }
   }

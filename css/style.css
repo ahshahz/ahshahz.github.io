@@ -1706,7 +1706,12 @@ textarea.form-control {
 .form-text {
   display: block;
   margin-top: 0.25rem; }
-
+/* code from https://www.w3schools.com/howto/howto_css_image_responsive.asp */
+ .responsive {
+    width: 500%;
+    max-width: 900px;
+    height: auto;
+  }
 .form-row {
   display: -webkit-box;
   display: -ms-flexbox;
